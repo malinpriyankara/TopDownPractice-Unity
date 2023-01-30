@@ -32,15 +32,13 @@ public class PlayerController : MonoBehaviour
     }//Player move
     private void PlayerLookingAt()
     {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            _mousePosition = Input.mousePosition;
-            _2DMousePosition = new Vector2(_mousePosition.x, _mousePosition.y);
-            transform.LookAt(_mousePosition);
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+       // _mousePosition = Input.mousePosition;
+           // _2DMousePosition = new Vector2(_mousePosition.x, _mousePosition.y);
+            transform.LookAt(mousePosition);
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
-        }
-        print("Mouse Position is"+_mousePosition);
+       
+        print("Mouse Position is"+mousePosition);
     }
     private void PlayerShoot()
     {

@@ -35,5 +35,12 @@ public class EnemyController : MonoBehaviour
             transform.Translate(new Vector3(_enemySpeed * Time.deltaTime, 0, 0));
         }
     }//Player chase
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet")) Destroy(this.gameObject, 0);
+    }
 }//Class
