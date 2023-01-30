@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _gun;
     private Vector3 _mousePosition;
     private Vector2 _2DMousePosition;
+    
    // private static EnemyController _enemyController;
     void Start()
     {
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(mousePosition);
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
        
-        print("Mouse Position is"+mousePosition);
+        //print("Mouse Position is"+_bc._direction);
     }
     private void PlayerShoot()
     {

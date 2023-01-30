@@ -7,7 +7,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float _bulletSpeed = 5f;
     private Rigidbody2D _rb;
     private Vector2 _mousePosition;
-    private Vector2 _direction;
+    public Vector2 _direction;
     void Start()
     {
         _rb = this.gameObject.GetComponent<Rigidbody2D>();
@@ -25,7 +25,7 @@ public class BulletController : MonoBehaviour
          _direction = (_mousePosition - (Vector2)transform.position).normalized;
         _rb.velocity = _direction * _bulletSpeed;
         print(_direction);
-        print(transform.position);
+        //print(transform.position);
     }//Bullet move
     private void FixedUpdate()
     {
