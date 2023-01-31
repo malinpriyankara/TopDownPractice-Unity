@@ -11,6 +11,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _gun;
     [SerializeField] private AudioSource _audio001;
+    [SerializeField] private GameObject _enemyBullet;
+    [SerializeField] private GameObject _enemyGun;
+    [SerializeField] private float _bulletSpawnTimer = 10;
     void Start()
     {
         _audio001.enabled = true;
@@ -20,7 +23,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         PlayerChase();
-        
+        InvokeRepeating("EnemyShoot", _bulletSpawnTimer,2);
     }//Update
 
     public void PlayerChase()
@@ -41,5 +44,9 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet")) Destroy(this.gameObject, 0);
        
     }//On trigger enter
+    private void EnemyShoot()
+    {
+       if(Vector2.Distance(transform.position,_player.transform.position)<=_minDistance) Instantiate(_enemyBullet, _enemyGun.transform.position, Quaternion.identity);
+    }// Enemy shoot
    
 }//Class
