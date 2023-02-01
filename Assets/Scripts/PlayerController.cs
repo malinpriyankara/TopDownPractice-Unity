@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _playerSpeed = 2f;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _gun;
+    [SerializeField] private AudioSource _playerDieAudio;
     private Vector3 _mousePosition;
     private Vector2 _2DMousePosition;
-    
+    public float playerHealth = 3f;
    // private static EnemyController _enemyController;
     void Start()
     {
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
         PlayerMove();
         PlayerLookingAt();
         PlayerShoot();
+        PlayerColorChange();
+        PlayerDie();
        // _enemyController.PlayerChase();
     }//Update
 
@@ -43,6 +46,34 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayerShoot()
     {
-       if(Input.GetMouseButtonDown(0)) Instantiate(_bullet, _gun.transform.position, Quaternion.identity);
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(_bullet, _gun.transform.position, Quaternion.identity);
+            Rigidbody2D rgBD = this.gameObject.GetComponent<Rigidbody2D>();
+            //rgBD.simulated = false;
+        }
     }//Shoot
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyBullet")) playerHealth--;
+        print(playerHealth);
+    }//On Collision enter
+
+    private void PlayerColorChange()
+    {
+        if (playerHealth == 2f) this.gameObject.GetComponent<Renderer>().material.SetColor("_Color",Color.blue);
+        if (playerHealth == 1f) this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        print("Color changed");
+    }//Player color change
+    private void PlayerDie()
+    {
+        if (playerHealth <= 0)
+        {
+            _playerDieAudio.Play(0);
+            Destroy(this.gameObject, 0.5f);
+            
+        }
+    }//Player die
+
 }//Class
