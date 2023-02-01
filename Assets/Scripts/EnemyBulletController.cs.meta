@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: a7ae4218bd0a4fb4a83894bc266f8a23
+=======
+guid: 642677b0e03d6f647a8c8cd2e143eacd
+>>>>>>> origin/Bugs-Fixes-001
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
