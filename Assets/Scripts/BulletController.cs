@@ -5,6 +5,8 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     [SerializeField] private float _bulletSpeed = 5f;
+    //[SerializeField] private GameObject _target;
+    //[SerializeField] private GameObject _enemy;
     private Rigidbody2D _rb;
     private Vector2 _mousePosition;
     public Vector2 _direction;
@@ -38,6 +40,7 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //if (collision.gameObject.CompareTag("Target")) Instantiate(_enemy, _target.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }//Class

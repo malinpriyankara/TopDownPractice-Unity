@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject _bulletSpawnPoint;
     [SerializeField] private GameObject _enemyBullet;
     [SerializeField] private float _enemyBulletSpeed = 50f;
+    public float enemyHealth = 3;
     private float _intervals = 0;
     private float _shootTimmer = 1;
     private Vector2 _shootDirection;
@@ -27,8 +28,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         PlayerChase();
-        
-        //Invoke("EnemyShoot", 2f);
+        EnemyDie();
     }//Update
 
     public void PlayerChase()
@@ -42,7 +42,11 @@ public class EnemyController : MonoBehaviour
     }//Player chase
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       if(collision.gameObject.CompareTag("Bullet")) _audio001.Play(0);
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            _audio001.Play(0);
+            enemyHealth--;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,6 +65,10 @@ public class EnemyController : MonoBehaviour
             gRbd2.velocity = _shootDirection*_enemyBulletSpeed;
             print("Shoot");
         }
-    }
+    }//Enemy shoot
    
+    private void EnemyDie()
+    {
+        if (enemyHealth <= 0) Destroy(this.gameObject);
+    }
 }//Class

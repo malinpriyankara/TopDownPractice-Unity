@@ -134,3 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletSpeed: 25
+  _target: {fileID: 8496563629575065862, guid: 3968a731a116e8240b3049a675012c74, type: 3}
+  _enemy: {fileID: 7332427160062682040, guid: b9a3c72bf0d6c744395befd95a346f64, type: 3}
+  _direction: {x: 0, y: 0}
